@@ -10,6 +10,35 @@ Terraform is an open-source Infrastructure as Code (IaC) tool that allows you to
 - Cloud provider credentials configured (e.g., AWS, Azure, GCP)
 - Basic understanding of Cloud concepts and Infrastructure as Code
 
+## Setting Up AWS Environment Variables
+
+Before deploying your infrastructure or CI/CD pipelines, you need to configure your AWS credentials. Terraform and CI tools (e.g., GitHub Actions) expect the AWS access keys to be available as environment variables.
+
+### Local Development
+
+You can configure your AWS credentials on your local machine by setting two environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. For example:
+
+**On Linux/MacOS:**
+
+```bash
+export AWS_ACCESS_KEY_ID=your_aws_access_key_id
+export AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+```
+
+**On Windows:**
+
+```cmd
+set AWS_ACCESS_KEY_ID=your_aws_access_key_id
+set AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+```
+
+For PowerShell:
+
+```powershell
+$env:AWS_ACCESS_KEY_ID="your_aws_access_key_id"
+$env:AWS_SECRET_ACCESS_KEY="your_aws_secret_access_key"
+```
+
 ## Steps to Deploy Infrastructure
 
 ### 1. Define Your Infrastructure
