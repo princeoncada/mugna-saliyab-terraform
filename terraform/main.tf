@@ -13,7 +13,7 @@ provider "aws" {
 
 # Create an S3 bucket for your React app.
 resource "aws_s3_bucket" "react_app_bucket" {
-  bucket = "www.terraform.denreiketh.com" # must be globally unique
+  bucket = "www.terraform.denreikeith.com" # must be globally unique
   # This makes sure the bucket is deleted when you run `terraform destroy`
   force_destroy = true
 }
@@ -31,6 +31,14 @@ resource "aws_s3_bucket_website_configuration" "name" {
 
 }
 
+resource "aws_s3_bucket_public_access_block" "bucket_pub_access" {
+  bucket                  = aws_s3_bucket.react_app_bucket.id
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
 resource "aws_s3_bucket_policy" "react_app_policy" {
   bucket = aws_s3_bucket.react_app_bucket.id
   policy = jsonencode({
@@ -46,6 +54,7 @@ resource "aws_s3_bucket_policy" "react_app_policy" {
       }
     ]
   })
+  depends_on = [ aws_s3_bucket_public_access_block.bucket_pub_access ]
 }
 
 # Create a CloudFront Distribution to serve your site.
