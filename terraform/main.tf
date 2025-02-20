@@ -13,6 +13,7 @@ provider "aws" {
 
 # Create an S3 bucket for your React app.
 resource "aws_s3_bucket" "react_app_bucket" {
+  # TODO: change this one to your unique bucket name
   bucket = "www.terraform.denreikeith.com" # must be globally unique
   # This makes sure the bucket is deleted when you run `terraform destroy`
   force_destroy = true
